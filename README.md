@@ -22,7 +22,7 @@ Documentation: [docs](docs)
 
 ## 本地运行
 
-需要现代 Node.js（GitHub Actions 使用 Node.js 22）和 Python 3：
+需要现代 Node.js（建议 Node.js 22 或更新版本）和 Python 3：
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
@@ -51,15 +51,19 @@ Android Chrome。Safari 和 iPhone/iPad 的常规浏览器不适用。
 
 公开网页：<https://pm25.syang.dev/>
 
-在仓库 Settings → Pages 中选择 **GitHub Actions**。
-推送 `master` 或手动运行 **Publish** 工作流即可构建并发布 `dist`；
-项目独立域名为 `pm25.syang.dev`，Cloudflare 使用 DNS-only CNAME 指向
-`zhang-siyang.github.io`，GitHub Pages 为该域名签发证书并启用 Enforce HTTPS。
-此绑定仅属于当前项目，不改变个人博客或其他站点。Web Bluetooth 不能在普通公网
-HTTP 页面工作。
+网页托管在 Cloudflare Pages（项目 `mops-vida-pm-watchdog`），源码保留在 GitHub。
+备用 HTTPS 入口：<https://mops-vida-pm-watchdog.pages.dev/>。
+`pm25.syang.dev` 在 Cloudflare Pages 的 Custom domains 中绑定到该项目；
+只调整此子域名，不改变个人博客或其他站点。
+
+更新网页时运行 `npm run build`，在 Cloudflare Dashboard → Workers & Pages →
+`mops-vida-pm-watchdog` → Create deployment 中选择 Production 并上传 `dist`。
+当前使用 Direct Upload，不会在推送 GitHub 后自动发布；不需要上传源码或
+`node_modules`。已移除旧的 GitHub Pages 发布工作流，避免恢复失效的站点。
+Web Bluetooth 只能在 HTTPS 或 localhost 等安全上下文工作。
 
 本分支移除了原作者的 Google Analytics。检测仪读数由浏览器通过蓝牙读取，
-应用没有向服务器上传读数的逻辑；GitHub Pages 只托管静态文件。
+应用没有向服务器上传读数的逻辑；Cloudflare Pages 只托管静态文件。
 历史数据仅保存在当前页面内存中，刷新或关闭前请先下载。
 
 原项目及 MIT 许可证保留。原在线地址
