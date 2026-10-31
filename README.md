@@ -49,11 +49,14 @@ Android Chrome。Safari 和 iPhone/iPad 的常规浏览器不适用。
 
 公开仓库：<https://github.com/Zhang-Siyang/mops-vida-pm-watchdog>
 
+公开网页：<https://pm25.syang.dev/>
+
 在仓库 Settings → Pages 中选择 **GitHub Actions**。
 推送 `master` 或手动运行 **Publish** 工作流即可构建并发布 `dist`；
-实际站点地址见工作流的 `github-pages` environment。
-若账号的个人 Pages 配置了自定义域名，项目站点会继承它，需要确保该域名的
-DNS 和 HTTPS 可用；Web Bluetooth 不能在普通公网 HTTP 页面工作。
+项目独立域名为 `pm25.syang.dev`，Cloudflare 使用 DNS-only CNAME 指向
+`zhang-siyang.github.io`，GitHub Pages 为该域名签发证书并启用 Enforce HTTPS。
+此绑定仅属于当前项目，不改变个人博客或其他站点。Web Bluetooth 不能在普通公网
+HTTP 页面工作。
 
 本分支移除了原作者的 Google Analytics。检测仪读数由浏览器通过蓝牙读取，
 应用没有向服务器上传读数的逻辑；GitHub Pages 只托管静态文件。
