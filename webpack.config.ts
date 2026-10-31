@@ -2,7 +2,6 @@ import { Configuration } from 'webpack';
 import HTMLPlugin from 'html-webpack-plugin';
 import CSSPlugin from 'mini-css-extract-plugin';
 import { loader as TypedCSSLoader } from '@nice-labs/typed-css-modules';
-import HTMLPartialPlugin from 'html-webpack-partials-plugin';
 
 const configuration: Configuration = {
   context: __dirname,
@@ -47,18 +46,12 @@ const configuration: Configuration = {
       },
     ],
   },
-  devServer: { hot: false, inline: false, https: true },
   plugins: [
     new HTMLPlugin({
       title: 'MOPS·VIDA PM Watchdog',
       favicon: require.resolve('./assets/air-pollution-icon.png'),
     }),
     new CSSPlugin({ filename: '[name].css' }),
-    new HTMLPartialPlugin({
-      path: require.resolve('./assets/partials/analytics.html'),
-      location: 'head',
-      options: { id: 'UA-168944052-1' },
-    }),
   ],
 };
 
